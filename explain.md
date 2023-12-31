@@ -1,0 +1,7 @@
+repondre au quistions: Q1: Quelles sont les structures de données à utiliser ? Les structures de données principales sont des matrices (B, C, A) et un tampon (T). Matrices (B, C, A): Ce sont des tableaux bidimensionnels utilisés pour stocker les matrices B, C et le résultat final A. int B[MAX_SIZE][MAX_SIZE], C[MAX_SIZE][MAX_SIZE], A[MAX_SIZE][MAX_SIZE]; Tampon (T): Un tableau bidimensionnel utilisé pour stocker les résultats intermédiaires. int T[N][MAX_SIZE];
+
+
+Q2: Comment allez-vous protéger l'accès à ces données? On utilise un verrou (mutex) pour protéger l'accès aux sections critiques du code où les matrices sont modifiées. Des sémaphores (empty et full) sont utilisées pour assurer la synchronisation entre les threads producteurs et consommateurs pthread_mutex_t mut; sem_t empty, full;
+
+Q3: Quels sont les risques? Courses critiques : Risque que deux threads modifient les mêmes données simultanément. Les verrous (mutex) sont utilisés pour éviter cela. Deadlocks : Risque de blocage si les threads ne libèrent pas correctement les verrous. Il est crucial de gérer les verrous de manière appropriée. Performance : Une synchronisation excessive peut affecter les performances. Il faut minimiser les sections critiques pour éviter le blocage excessif des threads. Accès concurrent aux données partagées : Si les données partagées ne sont pas synchronisées correctement, cela peut conduire à des résultats incorrects
+
